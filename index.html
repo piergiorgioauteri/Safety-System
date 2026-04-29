@@ -2,71 +2,58 @@
 <html lang="it">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Trova i rischi-Encuentra el riesgo</title>
+<title>Trova i Pericoli</title>
 
 <style>
-/* ✅ COLORE AZIENDALE DI SFONDO */
-body {
-  font-family: Arial, sans-serif;
-  text-align: center;
-  background: #CE1041; /* ← COLORE AZIENDALE */
-  margin: 0;
-}
+ body {
+   font-family: Arial, sans-serif;
+   text-align: center;
+   background: #f4f4f4;
+   margin: 0;
+ }
 
-/* CONTENITORE CENTRALE */
-#wrapper {
-  background: #f4f4f4;
-  max-width: 1000px;
-  margin: auto;
-}
+ /* HEADER CON LOGO */
+ #header {
+   background: #ffffff;
+   padding: 10px;
+   border-bottom: 1px solid #ccc;
+ }
 
-/* HEADER CON LOGO */
-#header {
-  background: #ffffff;
-  padding: 10px;
-  border-bottom: 3px solid #0A3D62;
-}
+ #header img {
+   max-height: 60px;
+   width: auto;
+ }
 
-#header img {
-  max-height: 60px;
-  width: auto;
-}
+ /* CONTATORE */
+ #counter {
+   background: #ffffff;
+   padding: 10px;
+   font-size: 18px;
+   font-weight: bold;
+   position: sticky;
+   top: 0;
+   z-index: 10;
+ }
 
-/* CONTATORE */
-#counter {
-  background: #ffffff;
-  padding: 10px;
-  font-size: 18px;
-  font-weight: bold;
-  position: sticky;
-  top: 0;
-  z-index: 10;
-}
+ /* AREA IMMAGINE */
+ #container {
+   position: relative;
+   display: inline-block;
+ }
 
-/* AREA IMMAGINE */
-#container {
-  position: relative;
-  display: inline-block;
-  padding: 10px;
-}
+ img.main-image {
+   width: 100%;
+   max-width: 900px;
+ }
 
-img.main-image {
-  width: 100%;
-  max-width: 900px;
-  height: auto;
-}
-
-/* TAP PIÙ GRANDI */
-.spot {
-  position: absolute;
-  width: 70px;
-  height: 70px;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-}
+ .spot {
+   position: absolute;
+   width: 50px;
+   height: 50px;
+   background: transparent;
+   border: none;
+   cursor: pointer;
+ }
 </style>
 
 <script>
@@ -76,56 +63,77 @@ let foundSpots = {};
 
 function updateCounter() {
   document.getElementById("counter").innerText =
-  "Pericoli trovati: " + foundCount + " / " + totalErrors;
+    "Pericoli trovati: " + foundCount + " / " + totalErrors;
 }
 
 function found(id, text){
   event.stopPropagation();
+
   if (foundSpots[id]) {
-    alert("ℹ️ Rischio già individuato - Riesgo ya identificado.");
+    alert("ℹ️ Pericolo già individuato.");
     return;
   }
+
   foundSpots[id] = true;
   foundCount++;
   updateCounter();
-  alert("✅ Rischio individuato - Riesgo identificado\n\n" + text);
+
+  alert("✅ Pericolo individuato:\n\n" + text);
+
   if (foundCount === totalErrors) {
-    alert("🎉 Complimenti!\nHai individuato tutti i pericoli presenti - ¡Felicidades!Has identificado todos los peligros presentes.");
+    alert("🎉 Complimenti!\nHai individuato tutti i pericoli presenti.");
   }
 }
 
 function wrong(){
-  alert("❌ Qui non è stato individuato un rischio - Aquí no se ha identificado ningún riesgo.");
+  alert("❌ Qui non è stato individuato un pericolo.");
 }
 </script>
+
 </head>
 
 <body onload="updateCounter()">
 
-<div id="wrapper">
-
+<!-- LOGO AZIENDALE -->
 <div id="header">
-  <img src="logo_azienda.png" alt="Logo aziendale">
+  logo_azienda.png
 </div>
 
+<!-- CONTATORE -->
 <div id="counter"></div>
 
-<h2>Trova i pericoli nell'immagine - Encuentra los peligros en la imagen</h2>
-
-<p style="font-size:14px;color:#555;">
-  Su smartphone si consiglia di <strong>ruotare il dispositivo</strong> o usare lo <strong>zoom</strong>.  
-  – En el smartphone se recomienda <strong>girar el dispositivo</strong> o usar el <strong>zoom</strong>.
-</p>
+<h2>Trova i pericoli nell'immagine</h2>
+<p>Tocca le zone che secondo te sono pericolose</p>
 
 <div id="container" onclick="wrong()">
 
-  <img src="giga-factory.png" class="main-image" alt="Scenario di lavoro">
+  giga-factory.png
 
-  <div class="spot" style="top:43%;left:55%;" onclick="found('e1','Uso del telefono durante la guida del carrello elevatore')"></div>
-  <div class="spot" style="top:48%;left:40%;" onclick="found('e2','Pedone nella corsia di transito dei carrelli')"></div>
-  <div class="spot" style="top:55%;left:87%;" onclick="found('e3','Materiale lasciato nella corsia di marcia')"></div>
-  <div class="spot" style="top:55%;left:72%;" onclick="found('e4','Presenza di sporco e detriti a terra')"></div>
-  <div class="spot" style="top:69%;left:25%;" onclick="found('e5','Pavimentazione non mantenuta pulita')"></div>
-  <div class="spot" style="top:53%;left:1%;"  onclick="found('e6','Operatore senza DPI')"></div>
+  <!-- Carrello + telefono -->
+  <div class="spot" style="top:43%;left:55%;"
+    onclick="found('e1','Uso del telefono durante la guida del carrello elevatore.')"></div>
+
+  <!-- Pedone nella corsia -->
+  <div class="spot" style="top:48%;left:40%;"
+    onclick="found('e2','Pedone nella corsia di transito dei carrelli.')"></div>
+
+  <!-- Materiale a terra -->
+  <div class="spot" style="top:55%;left:87%;"
+    onclick="found('e3','Materiale lasciato nella corsia di marcia.')"></div>
+
+  <!-- Sporcizia 1 -->
+  <div class="spot" style="top:55%;left:72%;"
+    onclick="found('e4','Presenza di sporco e detriti a terra: rischio di inciampo.')"></div>
+
+  <!-- Sporcizia 2 -->
+  <div class="spot" style="top:69%;left:25%;"
+    onclick="found('e5','Pavimentazione non mantenuta pulita.')"></div>
+
+  <!-- Senza DPI -->
+  <div class="spot" style="top:53%;left:1%;"
+    onclick="found('e6','Operatore senza adeguati dispositivi di protezione individuale.')"></div>
 
 </div>
+
+</body>
+</html>
