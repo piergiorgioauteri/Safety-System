@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Trova i Pericoli</title>
+<title>Trova i rischi-Encuentra el riesgo</title>
 
 <style>
 /* ✅ COLORE AZIENDALE DI SFONDO */
@@ -82,20 +82,20 @@ function updateCounter() {
 function found(id, text){
   event.stopPropagation();
   if (foundSpots[id]) {
-    alert("ℹ️ Pericolo già individuato.");
+    alert("ℹ️ Rischio già individuato - Riesgo ya identificado.");
     return;
   }
   foundSpots[id] = true;
   foundCount++;
   updateCounter();
-  alert("✅ Pericolo individuato\n\n" + text);
+  alert("✅ Rischio individuato - Riesgo identificado\n\n" + text);
   if (foundCount === totalErrors) {
-    alert("🎉 Complimenti!\nHai individuato tutti i pericoli presenti.");
+    alert("🎉 Complimenti!\nHai individuato tutti i pericoli presenti - ¡Felicidades!Has identificado todos los peligros presentes.");
   }
 }
 
 function wrong(){
-  alert("❌ Qui non è stato individuato un pericolo.");
+  alert("❌ Qui non è stato individuato un rischio - Aquí no se ha identificado ningún riesgo.");
 }
 </script>
 </head>
@@ -110,10 +110,10 @@ function wrong(){
 
   <div id="counter"></div>
 
-  <h2>Trova i pericoli nell'immagine</h2>
+  <h2>Trova i pericoli nell'immagine - Encuentra los peligros en la imagen</h2>
 
   <p style="font-size:14px;color:#555;">
-    Su smartphone si consiglia di <strong>ruotare il dispositivo</strong> o usare lo <strong>zoom</strong>.
+    Su smartphone si consiglia di <strong>ruotare il dispositivo</strong> o usare lo <strong>zoom</strong>. - En el smartphone se recomienda <strong>girar el dispositivo</strong> o usare el <strong>zoom</strong>.
   </p>
 
   <div id="container" onclick="wrong()">
