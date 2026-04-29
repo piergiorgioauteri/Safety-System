@@ -2,25 +2,31 @@
 <html lang="it">
 <head>
 <meta charset="UTF-8">
-
-<!-- ✅ FONDAMENTALE PER MOBILE -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Trova i Pericoli</title>
 
 <style>
+/* ✅ COLORE AZIENDALE DI SFONDO */
 body {
   font-family: Arial, sans-serif;
   text-align: center;
-  background: #f4f4f4;
+  background: #CE1041; /* ← COLORE AZIENDALE */
   margin: 0;
+}
+
+/* CONTENITORE CENTRALE */
+#wrapper {
+  background: #f4f4f4;
+  max-width: 1000px;
+  margin: auto;
 }
 
 /* HEADER CON LOGO */
 #header {
   background: #ffffff;
   padding: 10px;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 3px solid #0A3D62;
 }
 
 #header img {
@@ -43,7 +49,7 @@ body {
 #container {
   position: relative;
   display: inline-block;
-  max-width: 100%;
+  padding: 10px;
 }
 
 img.main-image {
@@ -52,7 +58,7 @@ img.main-image {
   height: auto;
 }
 
-/* ✅ TAP PIÙ GRANDI PER SMARTPHONE */
+/* TAP PIÙ GRANDI */
 .spot {
   position: absolute;
   width: 70px;
@@ -70,23 +76,19 @@ let foundSpots = {};
 
 function updateCounter() {
   document.getElementById("counter").innerText =
-    "Pericoli trovati: " + foundCount + " / " + totalErrors;
+  "Pericoli trovati: " + foundCount + " / " + totalErrors;
 }
 
 function found(id, text){
   event.stopPropagation();
-
   if (foundSpots[id]) {
     alert("ℹ️ Pericolo già individuato.");
     return;
   }
-
   foundSpots[id] = true;
   foundCount++;
   updateCounter();
-
   alert("✅ Pericolo individuato\n\n" + text);
-
   if (foundCount === totalErrors) {
     alert("🎉 Complimenti!\nHai individuato tutti i pericoli presenti.");
   }
@@ -96,58 +98,35 @@ function wrong(){
   alert("❌ Qui non è stato individuato un pericolo.");
 }
 </script>
-
 </head>
 
 <body onload="updateCounter()">
 
-<!-- LOGO -->
-<div id="header">
-  <img src="logo_azienda.png" alt="Logo aziendale">
-</div>
+<div id="wrapper">
 
-<!-- CONTATORE -->
-<div id="counter"></div>
-
-<h2>Trova i pericoli nell'immagine</h2>
-
-<!-- ✅ MESSAGGIO GUIDA PER SMARTPHONE -->
-<p style="font-size:14px;color:#555; margin:10px;">
-Su smartphone si consiglia di <strong>ruotare il dispositivo</strong> o usare lo <strong>zoom</strong> per individuare meglio i pericoli.
-</p>
-
-<div id="container" onclick="wrong()">
-
-  <img src="giga-factory.png" class="main-image" alt="Ambiente di lavoro">
-
-  <!-- 1. Carrello + telefono -->
-  <div class="spot" style="top:43%;left:55%;"
-    onclick="found('e1','Uso del telefono durante la guida del carrello elevatore.')">
+  <div id="header">
+    logo_azienda.png
   </div>
 
-  <!-- 2. Pedone nella corsia -->
-  <div class="spot" style="top:48%;left:40%;"
-    onclick="found('e2','Pedone nella corsia di transito dei carrelli.')">
-  </div>
+  <div id="counter"></div>
 
-  <!-- 3. Materiale a terra -->
-  <div class="spot" style="top:55%;left:87%;"
-    onclick="found('e3','Materiale lasciato nella corsia di marcia.')">
-  </div>
+  <h2>Trova i pericoli nell'immagine</h2>
 
-  <!-- 4. Sporcizia -->
-  <div class="spot" style="top:55%;left:72%;"
-    onclick="found('e4','Presenza di sporco e detriti a terra: rischio di inciampo.')">
-  </div>
+  <p style="font-size:14px;color:#555;">
+    Su smartphone si consiglia di <strong>ruotare il dispositivo</strong> o usare lo <strong>zoom</strong>.
+  </p>
 
-  <!-- 5. Pavimento sporco -->
-  <div class="spot" style="top:69%;left:25%;"
-    onclick="found('e5','Pavimentazione non mantenuta pulita.')">
-  </div>
+  <div id="container" onclick="wrong()">
 
-  <!-- 6. Senza DPI -->
-  <div class="spot" style="top:53%;left:1%;"
-    onclick="found('e6','Operatore senza adeguati dispositivi di protezione individuale.')">
+    giga-factory.png
+
+    <div class="spot" style="top:43%;left:55%;" onclick="found('e1','Uso del telefono durante la guida del carrello elevatore')"></div>
+    <div class="spot" style="top:48%;left:40%;" onclick="found('e2','Pedone nella corsia di transito dei carrelli')"></div>
+    <div class="spot" style="top:55%;left:87%;" onclick="found('e3','Materiale lasciato nella corsia di marcia')"></div>
+    <div class="spot" style="top:55%;left:72%;" onclick="found('e4','Presenza di sporco e detriti a terra')"></div>
+    <div class="spot" style="top:69%;left:25%;" onclick="found('e5','Pavimentazione non mantenuta pulita')"></div>
+    <div class="spot" style="top:53%;left:1%;"  onclick="found('e6','Operatore senza DPI')"></div>
+
   </div>
 
 </div>
