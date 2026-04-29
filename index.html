@@ -2,13 +2,13 @@
 <html lang="it">
 <head>
 <meta charset="UTF-8">
-<title>Trova i Pericoli</title>
+<title>Trova i rischi Encuentra los riesgos</title>
 
 <style>
  body {
    font-family: Arial, sans-serif;
    text-align: center;
-   background: #f4f4f4;
+   background: #ffffff;
    margin: 0;
  }
 
@@ -63,14 +63,14 @@ let foundSpots = {};
 
 function updateCounter() {
   document.getElementById("counter").innerText =
-    "Pericoli trovati: " + foundCount + " / " + totalErrors;
+    "Rischi trovati, Riesgos encontrados: " + foundCount + " / " + totalErrors;
 }
 
 function found(id, text){
   event.stopPropagation();
 
   if (foundSpots[id]) {
-    alert("ℹ️ Pericolo già individuato.");
+    alert("ℹ️ Rischio già individuato, Riesgo ya identificado.");
     return;
   }
 
@@ -78,15 +78,15 @@ function found(id, text){
   foundCount++;
   updateCounter();
 
-  alert("✅ Pericolo individuato:\n\n" + text);
+  alert("✅ Rischio individuato,Riesgo identificado:\n\n" + text);
 
   if (foundCount === totalErrors) {
-    alert("🎉 Complimenti!\nHai individuato tutti i pericoli presenti.");
+    alert("🎉 Complimenti!\nHai individuato tutti i rischi presenti\n 🎉¡Felicidades!\nHas identificado todos los riesgos presentes..");
   }
 }
 
 function wrong(){
-  alert("❌ Qui non è stato individuato un pericolo.");
+  alert("❌ Qui non è stato individuato un rischio\n❌Aquí no se ha identificado ningún riesgo. ");
 }
 </script>
 
@@ -96,42 +96,42 @@ function wrong(){
 
 <!-- LOGO AZIENDALE -->
 <div id="header">
-  logo_azienda.png
+  <img src="logo_azienda.png" alt="Logo aziendale">
 </div>
 
 <!-- CONTATORE -->
 <div id="counter"></div>
 
-<h2>Trova i pericoli nell'immagine</h2>
-<p>Tocca le zone che secondo te sono pericolose</p>
+<h2>Trova i rischi nell'immagine, Encuentra los riesgos en la imagen</h2>
+<p>Tocca le zone dove vedi un rischio, Toca las zonas donde veas un riesgo.</p>
 
 <div id="container" onclick="wrong()">
 
-  giga-factory.png
+  <img src="giga-factory.png" alt="Area produttiva" class="main-image">
 
   <!-- Carrello + telefono -->
   <div class="spot" style="top:43%;left:55%;"
-    onclick="found('e1','Uso del telefono durante la guida del carrello elevatore.')"></div>
+    onclick="found('e1','Uso del telefono durante la guida del carrello elevatore\nUso del teléfono durante la conducción del carretilla elevadora.')"></div>
 
   <!-- Pedone nella corsia -->
   <div class="spot" style="top:48%;left:40%;"
-    onclick="found('e2','Pedone nella corsia di transito dei carrelli.')"></div>
+    onclick="found('e2','Mancanza di DPI adeguati.\nFalta de equipos de protección individual (EPI) adecuados.')"></div>
 
-  <!-- Materiale a terra -->
+  <!-- Uscita di emergenza -->
   <div class="spot" style="top:55%;left:87%;"
-    onclick="found('e3','Materiale lasciato nella corsia di marcia.')"></div>
+    onclick="found('e3','Uscita di emergenza bloccata.\nSalida de emergencia bloqueada.')"></div>
 
   <!-- Sporcizia 1 -->
   <div class="spot" style="top:55%;left:72%;"
-    onclick="found('e4','Presenza di sporco e detriti a terra: rischio di inciampo.')"></div>
+    onclick="found('e4','Presenza di sporco e rifiuti a terra: rischio di inciampo.\nPresencia de suciedad y residuos en el suelo: riesgo de tropiezo.')"></div>
 
   <!-- Sporcizia 2 -->
   <div class="spot" style="top:69%;left:25%;"
-    onclick="found('e5','Pavimentazione non mantenuta pulita.')"></div>
+    onclick="found('e5','Presenza di sporco e rifiuti a terra: rischio di inciampo.\nPresencia de suciedad y residuos en el suelo: riesgo de tropiezo.')"></div>
 
   <!-- Senza DPI -->
   <div class="spot" style="top:53%;left:1%;"
-    onclick="found('e6','Operatore senza adeguati dispositivi di protezione individuale.')"></div>
+    onclick="found('e6','Mancanza di DPI adeguati.\nFalta de equipos de protección individual (EPI) adecuados.')"></div>
 
 </div>
 
